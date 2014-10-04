@@ -1,0 +1,33 @@
+<h1>Listing workouts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= link_to "Sets", :sort => "sets" %></th>
+      <th><%= link_to "Reps", :sort => "reps" %></th>
+      <th><%= link_to "Time Completed", :sort => "timeCompleted" %></th>
+      <th><%= link_to "Exercise", :sort => "exercise_id" %></th>
+      <th><%= link_to "Note", :sort => "note" %></th>
+      <th "colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workouts.each do |workout| %>
+      <tr>
+        <td><%= workout.sets %></td>
+        <td><%= workout.reps %></td>
+        <td><%= workout.timeCompleted %></td>
+        <td><%= Exercise.find(workout.exercise_id).name %></td> 
+        <td><%= workout.note %></td>
+        <td><%= link_to 'Show', workout %></td>
+        <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
+        <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Workout', new_workout_path %>
